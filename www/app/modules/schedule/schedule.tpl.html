@@ -1,0 +1,33 @@
+<ion-view id="schedule-container" view-title="Trains schedule" ng-init="ScheduleVm.initialize()">
+    <ion-content>
+        <ion-refresher pulling-text="Pull to refresh..."
+                       on-refresh="ScheduleVm.doRefresh()"></ion-refresher>
+        <ion-header-bar class="item-input-inset">
+            <label class="item-input-wrapper">
+                <i class="icon ion-ios-search placeholder-icon"></i>
+                <input type="search" placeholder="Search by Number or City" ng-model="search">
+            </label>
+        </ion-header-bar>
+        <ion-list>
+            <ion-item collection-repeat="item in ScheduleVm.schedule
+                | filter:search
+                | filter:{arrival: ScheduleVm.filters.type === 'arrival' ? ScheduleVm.today : ''}
+                | filter:{departure: ScheduleVm.filters.type === 'departure' ? ScheduleVm.today : ''}
+                | orderBy: item.arrival">
+                <p  ng-class="{ 'to-late' : item.check.time,
+                                'wait'    : !item.check.time && item.check.notice }">
+                    #{{item.thread.number}}
+                    <i class="icon ion-close-circled" ng-show="item.check.time"></i>
+                    <i class="icon ion-android-alarm-clock" ng-show="!item.check.time && item.check.notice"></i>
+                </p>
+                <h3> {{item.thread.short_title}} </h3>
+                <p>  {{item.departure}} - {{item.arrival}} </p>
+                <ion-option-button class="icon-left" side="right"
+                                   ng-class="{'ion-android-alarm-clock button-energized': !item.check.time && !item.check.notice,
+                                              'ion-android-close button-assertive': !item.check.time && item.check.notice}"
+                                   ng-click="ScheduleVm[item.check.notice ? 'removeNotice' : 'addNotice'](item)">
+                </ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>Trains schedule</title>
+
+    <link rel="manifest" href="manifest.json">
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <script src="cordova.js"></script>
+
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+    <script src="lib/moment/min/moment.min.js"></script>
+    <script src="lib/angular-mocks/angular-mocks.js"></script>
+
+  </head>
+  <body ng-app="trainsScheduleApp">
+
+    <ion-nav-view></ion-nav-view>
+
+    <script src="app/app.js"></script>
+    <script src="app/config.js"></script>
+    <script src="app/mocks.js"></script>
+
+    <script src="app/modules/schedule/schedule.mdl.js"></script>
+    <script src="app/modules/schedule/schedule.ctrl.js"></script>
+    <script src="app/modules/schedule/schedule.svc.js"></script>
+    <script src="app/modules/schedule/notices.svc.js"></script>
+
+    <script src="app/modules/filters/filters.mdl.js"></script>
+    <script src="app/modules/filters/filters.ctrl.js"></script>
+    <script src="app/modules/filters/filters.svc.js"></script>
+
+  </body>
+</html>
